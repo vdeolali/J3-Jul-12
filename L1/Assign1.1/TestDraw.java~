@@ -1,0 +1,16 @@
+// ----------- Begin: TestDraw.java --------
+import java.awt.*;
+
+public class TestDraw
+{
+    public static void main(String[] args)
+    {
+        Frame f = new Frame("test");
+        f.addWindowListener(new MyWindowHandler());
+        f.setSize(400, 300);
+        MyCanvas canvas = new MyCanvas();
+        f.add(canvas);
+        f.setVisible(true);
+    }
+}
+// ----------- End: TestDraw.java --------
