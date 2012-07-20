@@ -1,0 +1,70 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class MyFrame extends Frame
+{
+    TextField tfLastName, tfResult;
+    Label lblLastName;
+    Label lblResult;
+    Button button;
+
+    public MyFrame()
+    {
+        super("AWT Demo");
+
+        // GridLayout (2 rows, 1 col) that holds two Panels vertically
+        GridLayout gl = new GridLayout(2,1,5,5);
+        setLayout(gl);
+
+        // Panel with 2 text fields and their labels
+        Panel inputPanel = new Panel();
+
+        // GridLayout (2 rows, 2 cols) that holds 2 text fields and their labels
+        GridLayout gl1 = new GridLayout(2,2,5,5);
+        inputPanel.setLayout(gl1);
+
+        tfLastName = new TextField(10);
+        tfResult = new TextField(20);
+        tfResult.setEditable(false);
+
+        lblLastName = new Label("Last Name: ");
+        lblResult = new Label("Result: ");
+
+        inputPanel.add(lblLastName);
+        inputPanel.add(tfLastName);
+        inputPanel.add(lblResult);
+        inputPanel.add(tfResult);
+
+        // Panel with a push button
+        Panel submitPanel = new Panel();
+
+        submitPanel.setLayout(new FlowLayout());
+
+        button = new Button("Submit");
+
+        submitPanel.add(button);
+        inputPanel.setSize(250, 80);
+        submitPanel.setSize(250, 40);
+
+        // Add Panels to Frame
+        add( inputPanel );
+        add( submitPanel );
+
+        MyMouseAdapter ma = new MyMouseAdapter();
+        button.addMouseListener(ma);
+
+        setSize(300, 150);
+        setVisible(true);
+    }
+
+    class MyMouseAdapter extends MouseAdapter
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            if (e.getSource() == button)
+            {
+                tfResult.setText("Text box value: " + tfLastName.getText());
+            }
+        }
+    }
+}
