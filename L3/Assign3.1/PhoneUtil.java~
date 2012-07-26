@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
+
+public class PhoneUtil {
+
+    
+    public static  List <PhoneNum> readPhoneList(String fileName){
+	String line;
+	List <PhoneNum> phoneList = new ArrayList<PhoneNum>();
+	
+	try {
+	    Scanner lineScan = new Scanner(new File(fileName));
+
+	    while (lineScan.hasNextLine()){
+		line = lineScan.nextLine();
+		Scanner tokScan = new Scanner (line);
+
+		int lex = 1;
+		String make = "", model = "", token = "";
+		int age = 0, miles = 0;
+		
+		while (tokScan.hasNext()){
+		    token = tokScan.next();
+
+		    switch (lex){
+		    case 1:
+			make = token;
+			break;
+		    case 2:
+			model = token;
+			break;
+		    case 3:
+			age =  Integer.parseInt(token);
+			break;
+		    case 4:
+			miles = Integer.parseInt(token);
+			break; 
+		    }
+		    lex++;
+		}
+		carList.add(new Car(make, model,age,miles));
+		tokScan.close();
+	    }
+	    lineScan.close();
+	    return(carList);
+	}catch (IOException e){
+	    System.out.println("error: " + e.getMessage());
+	    return (null);
+	}
+    }
+}
