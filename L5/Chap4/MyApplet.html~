@@ -1,0 +1,7 @@
+
+<HTML>
+    <BODY>
+        <APPLET ALIGN="CENTER" CODE="MyApplet.class" WIDTH="400" HEIGHT="250">
+        </APPLET>
+    </BODY>
+</HTML>
