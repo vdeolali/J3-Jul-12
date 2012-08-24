@@ -1,0 +1,47 @@
+// -------- Begin: MyApplet.java ------------------
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class MyApplet extends JApplet implements ActionListener
+{
+    JButton play, stop;
+    AudioClip audioClip;
+
+    public void init()
+    {
+        play = new JButton("Play");
+        play.addActionListener(this);
+
+        stop = new JButton("Stop");
+        stop.addActionListener(this);
+
+        JPanel resultPanel = new JPanel();
+        resultPanel.setLayout(new FlowLayout());
+        resultPanel.setSize(200, 50);
+
+        resultPanel.add(play);
+        resultPanel.add(stop);
+
+        // Add the result panel to the frame
+        add( resultPanel );
+
+        audioClip = getAudioClip(getCodeBase(), "duck.wav");
+    }
+
+    public void actionPerformed( ActionEvent e )
+    {
+        JButton source = (JButton)e.getSource();
+
+        if (source.getText().equals("Play"))
+        {
+            audioClip.play();
+        }
+        else if (source.getText().equals("Stop"))
+        {
+            audioClip.stop();
+        }
+    }
+}
+// -------- End: MyApplet.java ------------------

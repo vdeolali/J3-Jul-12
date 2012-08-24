@@ -1,0 +1,43 @@
+
+// -------- Begin: MyServer.java ----------------
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+class MyServer
+{
+    public static void main(String[] args)
+    {
+        try
+        {
+            ServerSocket serverSocket = new ServerSocket(1234);
+            System.out.println("Waiting for client to connect...");
+
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Client connected");
+
+            // Create a stream to write to the client
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            Scanner s = new Scanner(new File("input.txt"));
+            String strLine = "";
+
+            while (s.hasNextLine())
+            {
+                strLine = s.nextLine();
+
+                // Send a line from input file to the client 
+                out.println(strLine);
+            }
+
+            out.close();
+            s.close();
+            serverSocket.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+            System.exit(1);
+        }
+}
+}
